@@ -1,0 +1,9 @@
+name: Recursivertp
+version: '${project.version}'
+main: fr.supermax_8.recursivertp
+authors: [ SuperMax_8 ]
+description: RTP command recursivly
+commands:
+  rtp:
+    permission: recursivertp.use
+    aliases: [randomteleportation]

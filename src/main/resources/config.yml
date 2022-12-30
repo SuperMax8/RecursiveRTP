@@ -1,0 +1,8 @@
+errormessage: "§cThe world have a problem, retry or contact an administrator."
+errormessage2: "§cThe world is not allowed."
+radius: 600
+iteration: 10
+worlds:
+  - world
+  - world_nether
+  - world_the_end
