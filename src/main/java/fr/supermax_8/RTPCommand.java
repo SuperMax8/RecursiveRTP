@@ -38,27 +38,24 @@ public class RTPCommand implements CommandExecutor {
         if (r.nextBoolean()) x = -x;
         if (r.nextBoolean()) z = -z;
         int y = 0;
-        switch (w.getEnvironment()) {
-            case NETHER:
-                for (int i = 1; i <= 256; i++) {
-                    Block b = w.getBlockAt(x, i, z);
-                    Block b2 = w.getBlockAt(x, i + 1, z);
-                    Block b4 = w.getBlockAt(x, i + 2, z);
-                    Block b3 = w.getBlockAt(x, i - 1, z);
-                    if (b.getType().isAir() && b2.getType().isAir() && b4.getType().isAir() && (!b3.getType().isAir() && !b3.getType().equals(Material.BEDROCK))) {
-                        y = i;
-                        break;
-                    }
+        if (w.getEnvironment() == World.Environment.NETHER) {
+            for (int i = 1; i <= 256; i++) {
+                Block b = w.getBlockAt(x, i, z);
+                Block b2 = w.getBlockAt(x, i + 1, z);
+                Block b4 = w.getBlockAt(x, i + 2, z);
+                Block b3 = w.getBlockAt(x, i - 1, z);
+                if (b.getType().isAir() && b2.getType().isAir() && b4.getType().isAir() && (!b3.getType().isAir() && !b3.getType().equals(Material.BEDROCK))) {
+                    y = i;
+                    break;
                 }
-                break;
-            default:
-                for (int i = 1; i <= 256; i++) {
-                    Block b = w.getBlockAt(x, i, z);
-                    Block b2 = w.getBlockAt(x, i + 1, z);
-                    Block b3 = w.getBlockAt(x, i - 1, z);
-                    if (b.getType().isAir() && b2.getType().isAir() && !b3.getType().isAir()) y = i;
-                }
-                break;
+            }
+        } else {
+            for (int i = 1; i <= 256; i++) {
+                Block b = w.getBlockAt(x, i, z);
+                Block b2 = w.getBlockAt(x, i + 1, z);
+                Block b3 = w.getBlockAt(x, i - 1, z);
+                if (b.getType().isAir() && b2.getType().isAir() && !b3.getType().isAir()) y = i;
+            }
         }
         if (y == 0) {
             if (iteration > RecursiveRTP.iteration) {

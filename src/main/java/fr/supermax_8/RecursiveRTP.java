@@ -27,10 +27,4 @@ public final class RecursiveRTP extends JavaPlugin {
         new Metrics(this, 17235);
     }
 
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
-
-
 }
